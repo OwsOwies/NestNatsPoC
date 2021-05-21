@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+  </head>
+  <body style="display: flex; flex-direction: column">
+      <button
+        onclick="
+            fetch('http://localhost:4222/ping')
+                .then(response => response.text())
+                .then(data => {
+                    const span = document.createElement('span');
+                    span.innerHTML = data;
+                    document.body.appendChild(span);
+                 })"
+      >Ping first microservice</button>
+  </body>
+</html>
