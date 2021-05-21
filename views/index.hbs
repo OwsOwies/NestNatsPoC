@@ -7,13 +7,23 @@
   <body style="display: flex; flex-direction: column">
       <button
         onclick="
-            fetch('http://localhost:4222/ping')
+            fetch('http://localhost:4222/pingWithResponse')
                 .then(response => response.text())
                 .then(data => {
                     const span = document.createElement('span');
                     span.innerHTML = data;
                     document.body.appendChild(span);
                  })"
-      >Ping first microservice</button>
+      >Ping first microservice (duplex)</button>
+      <button
+        onclick="
+            fetch('http://localhost:4222/pingWithoutResponse')
+                .then(response => response.text())
+                .then(data => {
+                    const span = document.createElement('span');
+                    span.innerHTML = data;
+                    document.body.appendChild(span);
+                 })"
+      >Ping first microservice (simplex)</button>
   </body>
 </html>

@@ -12,12 +12,17 @@ export class AppController {
   @Get()
   @Render('index')
   public root(): void {
-    // NOOP
+    // NOOP - just return html
   }
 
-  @Get('ping')
-  public ping(): Observable<string> {
+  @Get('pingWithResponse')
+  public pingWithResponse(): Observable<string> {
     return this.client.send({ cmd: 'pingRequest' }, {})
+  }
+
+  @Get('pingWithoutResponse')
+  public pingWithoutResponse(): void {
+    this.client.emit('pingEvent', {});
   }
 }
 
