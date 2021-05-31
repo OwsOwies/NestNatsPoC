@@ -19,7 +19,9 @@ async function bootstrap() {
       url: 'nats://localhost:4222'
     }
   });
-  firstMicroService.listen(() => console.log('First microservice is listening'));
+  firstMicroService.listen().then(
+    () => console.log('First microservice is listening'),
+  );
 
   const secondMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(SecondMicroModule, {
     transport: Transport.NATS,
@@ -27,7 +29,9 @@ async function bootstrap() {
       url: 'nats://localhost:4222'
     }
   });
-  secondMicroService.listen(() => console.log('Second microservice is listening'));
+  secondMicroService.listen().then(
+    () => console.log('Second microservice is listening'),
+  );
 }
 
 bootstrap();

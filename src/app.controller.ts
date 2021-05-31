@@ -3,10 +3,12 @@ import { ClientProxy, EventPattern, MessagePattern, Payload } from '@nestjs/micr
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
+export const clientService = 'NATS_CLIENT_SERVICE';
+
 @Controller()
 export class AppController {
   public constructor(
-    @Inject('NATS_CLIENT_SERVICE')
+    @Inject(clientService)
     private readonly client: ClientProxy
   ) {}
 
@@ -42,7 +44,7 @@ export class AppController {
 // https://docs.nestjs.com/microservices/basics
 export class FirstMicroController {
   public constructor(
-    @Inject('NATS_CLIENT_SERVICE')
+    @Inject(clientService)
     private readonly client: ClientProxy
   ) {}
 
