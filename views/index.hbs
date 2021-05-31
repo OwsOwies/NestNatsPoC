@@ -7,7 +7,7 @@
   <body style="display: flex; flex-direction: column">
       <button
         onclick="
-            fetch('http://localhost:4222/pingWithResponse')
+            fetch('http://localhost:4200/pingWithResponse')
                 .then(response => response.text())
                 .then(data => {
                     const span = document.createElement('span');
@@ -17,7 +17,7 @@
       >Ping first microservice (duplex)</button>
       <button
         onclick="
-            fetch('http://localhost:4222/pingWithoutResponse')
+            fetch('http://localhost:4200/pingWithoutResponse')
                 .then(response => response.text())
                 .then(data => {
                     const span = document.createElement('span');
@@ -25,5 +25,26 @@
                     document.body.appendChild(span);
                  })"
       >Ping first microservice (simplex)</button>
+      <button
+        onclick="
+            fetch('http://localhost:4200/pingWithComplexWithResponse')
+                .then(response => response.text())
+                .then(data => {
+                    const span = document.createElement('span');
+                    span.innerHTML = data;
+                    document.body.appendChild(span);
+                 })"
+      >Ping second microservice (duplex)</button>
+      
+      <button
+        onclick="
+            fetch('http://localhost:4200/pingWithComplexWithoutResponse')
+                .then(response => response.text())
+                .then(data => {
+                    const span = document.createElement('span');
+                    span.innerHTML = data;
+                    document.body.appendChild(span);
+                 })"
+      >Ping second microservice through first one (simplex)</button>
   </body>
 </html>
