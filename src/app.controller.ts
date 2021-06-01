@@ -76,11 +76,26 @@ export class FirstMicroController {
 export class SecondMicroController {
   @MessagePattern('passComplexWithResponse')
   public async handleComplexWithResponse(@Payload() data: { someText: string }): Promise<{ someText: string }> {
+    console.log('handling response in SecondMicroController');
     return { someText: `${data.someText} => Passed by SecondMicroController` };
   }
 
   @EventPattern('passComplexPingWithoutResponse')
   public async handleComplex(@Payload() data: { someText: string} ): Promise<void> {
     console.log('Complex ping received in Second MicroController with stack: ', data);
+  }
+}
+
+@Controller()
+export class ThirdMicroController {
+  @MessagePattern('passComplexWithResponse')
+  public async handleComplexWithResponse(@Payload() data: { someText: string }): Promise<{ someText: string }> {
+    console.log('handling response in ThirdMicroController');
+    return { someText: `${data.someText} => Passed by ThirdMicroController` };
+  }
+
+  @EventPattern('passComplexPingWithoutResponse')
+  public async handleComplex(@Payload() data: { someText: string} ): Promise<void> {
+    console.log('Complex ping received in ThirdMicroController with stack: ', data);
   }
 }

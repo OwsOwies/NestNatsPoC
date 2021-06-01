@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import { AppModule, FirstMicroModule, SecondMicroModule } from './app.module';
+import { AppModule, FirstMicroModule, SecondMicroModule, ThirdMicroModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
@@ -26,11 +26,23 @@ async function bootstrap() {
   const secondMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(SecondMicroModule, {
     transport: Transport.NATS,
     options: {
-      url: 'nats://localhost:4222'
+      url: 'nats://localhost:4222',
+      queue: 'someQ',
     }
   });
   secondMicroService.listen().then(
     () => console.log('Second microservice is listening'),
+  );
+
+  const thirdMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(ThirdMicroModule, {
+    transport: Transport.NATS,
+    options: {
+      url: 'nats://localhost:4222',
+      queue: 'someQ',
+    }
+  });
+  thirdMicroService.listen().then(
+    () => console.log('Third microservice is listening'),
   );
 }
 

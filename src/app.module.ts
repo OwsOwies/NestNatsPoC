@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { AppController, clientService, FirstMicroController, SecondMicroController } from './app.controller';
+import { AppController, clientService, FirstMicroController, SecondMicroController, ThirdMicroController } from './app.controller';
 
 @Module({
   imports: [
@@ -39,3 +39,8 @@ export class FirstMicroModule {}
   controllers: [SecondMicroController],
 })
 export class SecondMicroModule {}
+
+@Module({
+  controllers: [ThirdMicroController],
+})
+export class ThirdMicroModule {}
