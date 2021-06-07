@@ -9,7 +9,7 @@ import { AppController, clientService, FirstMicroController, SecondMicroControll
         name: clientService,
         transport: Transport.NATS,
         options: {
-          url: 'nats://localhost:4222'
+          servers: 'nats://localhost:4222'
         }
       }
     ]),
@@ -26,7 +26,7 @@ export class AppModule {}
         name: clientService,
         transport: Transport.NATS,
         options: {
-          url: 'nats://localhost:4222'
+          servers: 'nats://localhost:4222'
         }
       }
     ]),

@@ -16,7 +16,7 @@ async function bootstrap() {
   const firstMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(FirstMicroModule, {
     transport: Transport.NATS,
     options: {
-      url: 'nats://localhost:4222'
+      servers: 'nats://localhost:4222'
     }
   });
   firstMicroService.listen().then(
@@ -26,7 +26,7 @@ async function bootstrap() {
   const secondMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(SecondMicroModule, {
     transport: Transport.NATS,
     options: {
-      url: 'nats://localhost:4222',
+      servers: 'nats://localhost:4222',
       queue: 'someQ',
     }
   });
@@ -37,7 +37,7 @@ async function bootstrap() {
   const thirdMicroService = await NestFactory.createMicroservice<MicroserviceOptions>(ThirdMicroModule, {
     transport: Transport.NATS,
     options: {
-      url: 'nats://localhost:4222',
+      servers: 'nats://localhost:4222',
       queue: 'someQ',
     }
   });
